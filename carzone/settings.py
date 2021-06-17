@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
+import dj_database_url
 
 from pathlib import Path
+
+from django.db.models.expressions import RawSQL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'carzone.urls'
@@ -98,6 +103,11 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(default='postgres://postgres:tioluwanimi1.@localhost/carzone_db')
+# }
 
 
 # Password validation
@@ -137,7 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 STATICFILES_DIRS = [
     BASE_DIR / 'carzone/static',
 ]
@@ -155,8 +165,12 @@ MESSAGE_TAGS = {
 SITE_ID = 1
 
 #Email sending
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'obanwooluwafemi@gmail.com'
 EMAIL_HOST_PASSWORD = 'tioluwanimi'
-EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
