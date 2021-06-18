@@ -26,10 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$)lfxnd^qt&98!x!lav9m23pd!a(r$ta!%rik==8cf#n4+)rru'
 
+#whitenoise_settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['carzone-tom.herokuapp.com', 'carzone-tom.co', 'www.carzone-tom.co']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
